@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Logs | MoonWalkers FTC #38056</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { cyberCyan: '#00f2fe', cyberBlue: '#0284c7', cyberDark: '#080c14' },
+                    fontFamily: { heading: ['Orbitron', 'sans-serif'], body: ['Inter', 'sans-serif'], code: ['Fira Code', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Marked.js CDN to parse markdown files client-side -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body class="bg-cyberDark text-slate-100 min-h-screen antialiased flex flex-col justify-between pt-[76px]">
+
+    <!-- STICKY HEADER -->
+    <header class="bg-cyberDark/90 backdrop-blur-md border-b border-cyan-500/20 fixed top-0 left-0 right-0 z-50 h-[76px] flex items-center">
+        <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="bg-gradient-to-br from-cyan-500 to-blue-600 p-2 rounded-xl text-black font-black text-xs font-heading">FIRST</div>
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-2">
+                        <h1 class="font-heading font-extrabold text-lg text-white">MOONWALKERS</h1>
+                        <span class="bg-cyan-500/10 border border-cyan-400/30 text-cyberCyan text-[10px] font-bold px-2 py-0.5 rounded-full font-code">#38056</span>
+                    </div>
+                </div>
+            </a>
+            <nav class="hidden md:flex items-center gap-6 text-xs font-heading font-semibold uppercase tracking-widest">
+                <a href="index.html" class="text-slate-300 hover:text-cyberCyan">Home</a>
+                <a href="journey.html" class="text-slate-300 hover:text-cyberCyan">Our FLL Story</a>
+                <a href="team.html" class="text-slate-300 hover:text-cyberCyan">Meet The Team</a>
+                <a href="achievements.html" class="text-slate-300 hover:text-cyberCyan">Trophies</a>
+                <a href="blog.html" class="text-cyberCyan border-b-2 border-cyberCyan pb-1">Engineering Logs</a>
+                <a href="connect.html" class="text-slate-300 hover:text-cyberCyan">Outreach</a>
+                <a href="sponsors.html" class="bg-cyberCyan text-black px-4 py-2 rounded-lg font-extrabold">Sponsor Us</a>
+            </nav>
+            <button id="mobileMenuBtn" class="md:hidden text-2xl text-slate-300 p-2">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- DYNAMIC BLOG POST CONTAINER -->
+        <div class="lg:col-span-2 space-y-6" id="blog-container">
+            <div class="p-8 text-center text-slate-400 border border-slate-800 rounded-2xl bg-slate-900/40">
+                <i data-lucide="loader" class="w-6 h-6 animate-spin mx-auto text-cyberCyan mb-2"></i>
+                <p class="font-code text-xs">Loading logs from assets/blogs/blog-list.json...</p>
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="space-y-6">
+            <div class="glass-card p-6 rounded-2xl border-slate-800">
+                <h3 class="font-heading text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Post Archive Filter</h3>
+                <div class="flex flex-col gap-2 font-code text-xs">
+                    <button onclick="loadBlogs(false)" id="filter-active" class="px-3 py-2 rounded-lg bg-cyberCyan/20 text-cyberCyan border border-cyberCyan/40 text-left font-bold">
+                        Active Logs
+                    </button>
+                    <button onclick="loadBlogs(true)" id="filter-archived" class="px-3 py-2 rounded-lg bg-slate-900 text-slate-400 border border-slate-800 text-left hover:text-white">
+                        Archived / Throwbacks
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl border-slate-800">
+                <h3 class="font-heading text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Repositories & Feeds</h3>
+                <div class="space-y-3 font-medium text-sm">
+                    <a href="https://github.com" target="_blank" class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 hover:text-cyberCyan transition-colors">
+                        <i data-lucide="github" class="w-5 h-5 text-white"></i> GitHub Codebase
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 hover:text-cyberCyan transition-colors">
+                        <i data-lucide="instagram" class="w-5 h-5 text-pink-500"></i> Instagram Updates
+                    </a>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="bg-slate-950 border-t border-slate-800 text-slate-400 py-8 text-center text-xs">
+        <p>&copy; 2026 FTC Team #38056 MoonWalkers.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            loadBlogs(false);
+        });
+
+        async function loadBlogs(showArchived) {
+            const container = document.getElementById("blog-container");
+            
+            // Toggle Filter UI
+            document.getElementById("filter-active").className = !showArchived 
+                ? "px-3 py-2 rounded-lg bg-cyberCyan/20 text-cyberCyan border border-cyberCyan/40 text-left font-bold" 
+                : "px-3 py-2 rounded-lg bg-slate-900 text-slate-400 border border-slate-800 text-left hover:text-white";
+            document.getElementById("filter-archived").className = showArchived 
+                ? "px-3 py-2 rounded-lg bg-cyberCyan/20 text-cyberCyan border border-cyberCyan/40 text-left font-bold" 
+                : "px-3 py-2 rounded-lg bg-slate-900 text-slate-400 border border-slate-800 text-left hover:text-white";
+
+            try {
+                // Fetch the blog manifest list
+                const manifestRes = await fetch("assets/blogs/blog-list.json");
+                if (!manifestRes.ok) throw new Error("Could not find assets/blogs/blog-list.json");
+                
+                const posts = await manifestRes.json();
+                const filteredPosts = posts.filter(post => post.archived === showArchived);
+
+                container.innerHTML = "";
+
+                if (filteredPosts.length === 0) {
+                    container.innerHTML = `<div class="p-6 text-slate-400 font-code text-xs">No ${showArchived ? 'archived' : 'active'} entries found in blog-list.json.</div>`;
+                    return;
+                }
+
+                // Iterate posts and parse markdown
+                for (const post of filteredPosts) {
+                    let contentHtml = "";
+                    try {
+                        const mdRes = await fetch(`assets/blogs/${post.filename}`);
+                        if (mdRes.ok) {
+                            const rawMarkdown = await mdRes.text();
+                            contentHtml = marked.parse(rawMarkdown);
+                        } else {
+                            contentHtml = `<p class="text-amber-400 font-code text-xs">Markdown file (<code>${post.filename}</code>) missing in <code>assets/blogs/</code>.</p>`;
+                        }
+                    } catch (err) {
+                        contentHtml = `<p class="text-red-400 font-code text-xs">Failed reading markdown file.</p>`;
+                    }
+
+                    container.innerHTML += `
+                        <article class="glass-card p-6 sm:p-8 rounded-2xl border-slate-800 space-y-4">
+                            <div class="flex items-center justify-between text-xs font-code">
+                                <span class="text-cyberCyan font-semibold flex items-center gap-2">
+                                    <i data-lucide="calendar" class="w-4 h-4"></i> ${post.date}
+                                </span>
+                                ${post.archived ? '<span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 px-2 py-0.5 rounded text-[10px] uppercase font-bold">Archived</span>' : ''}
+                            </div>
+                            <h2 class="font-heading text-2xl font-bold text-white">${post.title}</h2>
+                            <div class="prose prose-invert max-w-none text-slate-300 text-sm leading-relaxed space-y-3 pt-2">
+                                ${contentHtml}
+                            </div>
+                        </article>
+                    `;
+                }
+                lucide.createIcons();
+            } catch (error) {
+                container.innerHTML = `
+                    <div class="p-6 border border-red-500/30 rounded-2xl bg-red-500/10 text-red-400 font-code text-xs">
+                        <strong class="block text-white mb-1">Failed to load assets/blogs/blog-list.json</strong>
+                        Ensure <code>blog-list.json</code> is located inside <code>assets/blogs/</code> and you are serving the page via a local web server (e.g. VS Code Live Server).
+                    </div>
+                `;
+            }
+        }
+    </script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

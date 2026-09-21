@@ -1,0 +1,189 @@
+/* ==========================================================================
+   FTC TEAM CYBERPUNK THEME DESIGN SYSTEM
+   ========================================================================== */
+
+@import url('https://googleapis.com');
+
+:root {
+  /* System Core Color Mapping */
+  --cyber-dark: #12131C;
+  --cyber-cyan: #00FFCC;
+  --cyber-magenta: #FF007F;
+  --cyber-card-bg: rgba(25, 27, 41, 0.45);
+  --cyber-border: rgba(255, 255, 255, 0.08);
+}
+
+/* Base Body Framework Overrides */
+body {
+  background-color: var(--cyber-dark);
+  font-family: 'Inter', sans-serif;
+  color: #FFFFFF;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   CUSTOM DESIGN MODULES & UTILITIES
+   ========================================================================== */
+
+/* 🧪 Glassmorphism Surface Architecture */
+.cyber-glass {
+  background: var(--cyber-card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--cyber-border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ⚡ Interactive Glow Effects */
+.glow-cyan {
+  text-shadow: 0 0 12px rgba(0, 255, 204, 0.5);
+}
+
+.glow-magenta {
+  text-shadow: 0 0 12px rgba(255, 0, 127, 0.5);
+}
+
+.border-glow-cyan:hover {
+  border-color: var(--cyber-cyan);
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.25);
+}
+
+.border-glow-magenta:hover {
+  border-color: var(--cyber-magenta);
+  box-shadow: 0 0 20px rgba(255, 0, 127, 0.25);
+}
+
+/* 🕹️ Custom Component Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cyber-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cyber-cyan);
+  box-shadow: 0 0 8px var(--cyber-cyan);
+}
+
+/* ==========================================================================
+   LAYOUT COMPONENT CONFIGURATIONS
+   ========================================================================== */
+
+/* 🗺️ Professional Vertical Timeline Grid (Our Journey Page) */
+.timeline-container {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.timeline-container::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--cyber-magenta), var(--cyber-cyan));
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1px;
+}
+
+.timeline-block {
+  position: relative;
+  width: 50%;
+  padding: 20px 40px;
+  box-sizing: border-box;
+}
+
+.timeline-block.left {
+  left: 0;
+}
+
+.timeline-block.right {
+  left: 50%;
+}
+
+.timeline-node {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: -8px;
+  top: 32px;
+  background: var(--cyber-dark);
+  border-radius: 50%;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.timeline-block.left .timeline-node {
+  border: 3px solid var(--cyber-magenta);
+  box-shadow: 0 0 10px var(--cyber-magenta);
+}
+
+.timeline-block.right .timeline-node {
+  left: -8px;
+  border: 3px solid var(--cyber-cyan);
+  box-shadow: 0 0 10px var(--cyber-cyan);
+}
+
+/* Responsive Adaptive Timeline Layout Adjustments */
+@media screen and (max-width: 768px) {
+  .timeline-container::after {
+    left: 31px;
+  }
+  
+  .timeline-block {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 20px;
+  }
+  
+  .timeline-block.right {
+    left: 0;
+  }
+  
+  .timeline-node {
+    left: 23px !important;
+    right: auto !important;
+  }
+}
+
+/* 🏆 Interactive Gamified Grid Layout (Achievements/Trophy Room) */
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.achievement-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.achievement-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+}
+
+.achievement-card.fll-legacy::before {
+  background: var(--cyber-magenta);
+}
+
+.achievement-card.ftc-era::before {
+  background: var(--cyber-cyan);
+}

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoonWalkers #38056 | FTC Robotics Team</title>
+    
+    <!-- Google Fonts: Orbitron for futuristic headings & Inter for crisp readability -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 6 Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        moonDark: '#07090e',
+                        moonNavy: '#0d121d',
+                        moonCard: '#131b2e',
+                        moonBorder: 'rgba(0, 240, 255, 0.15)',
+                        cyanGlow: '#00f0ff',
+                        cyanHover: '#00c8d6',
+                        ftcOrange: '#f58220',
+                        firstBlue: '#0066b2',
+                    },
+                    fontFamily: {
+                        heading: ['Orbitron', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        code: ['JetBrains Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        'neon-cyan': '0 0 20px rgba(0, 240, 255, 0.35)',
+                        'neon-cyan-lg': '0 0 35px rgba(0, 240, 255, 0.55)',
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, rgba(0, 240, 255, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 240, 255, 0.05) 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar for modern sleek aesthetic */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #07090e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f0ff;
+        }
+
+        .glow-text-cyan {
+            text-shadow: 0 0 12px rgba(0, 240, 255, 0.6), 0 0 24px rgba(0, 240, 255, 0.3);
+        }
+
+        .glass-panel {
+            background: rgba(19, 27, 46, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+        }
+
+        .glass-panel-hover:hover {
+            border-color: rgba(0, 240, 255, 0.5);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        .animate-pulse-glow {
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-moonDark text-gray-100 font-body min-h-screen antialiased overflow-x-hidden selection:bg-cyanGlow selection:text-black">
+
+    <!-- 0. TOP ANNOUNCEMENT TICKER BAR -->
+    <div class="bg-gradient-to-r from-moonNavy via-cyanGlow/20 to-moonNavy border-b border-cyanGlow/30 py-2 px-4 text-xs font-semibold tracking-wide text-gray-200 relative z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3 overflow-hidden">
+                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-cyanGlow/20 text-cyanGlow border border-cyanGlow/40 text-[10px] font-heading uppercase font-bold shrink-0">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyanGlow animate-ping"></span> Live Update
+                </span>
+                <div class="truncate text-gray-300">
+                    <strong class="text-white font-medium">MoonWalkers v2.4 FTC Driver Library Released:</strong>
+                    Custom PedroPathing & Swerve modules now open-source on GitHub!
+                </div>
+            </div>
+            <a href="#code-spotlight" class="shrink-0 text-cyanGlow hover:underline text-[11px] font-heading uppercase tracking-wider hidden sm:inline-flex items-center gap-1">
+                View Repository <i data-lucide="arrow-right" class="w-3 h-3"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- 1. STICKY HEADER NAVBAR -->
+    <header class="sticky top-0 z-40 bg-moonDark/80 backdrop-blur-md border-b border-cyanGlow/20 h-[76px] flex items-center transition-all duration-300">
+        <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            
+            <!-- Logo Grouping (MoonWalkers + FIRST Logo) -->
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <!-- MoonWalkers Custom Logo Emblem -->
+                    <div class="relative w-11 h-11 rounded-xl bg-gradient-to-br from-cyanGlow/30 via-moonCard to-moonDark border border-cyanGlow/50 flex items-center justify-center shadow-neon-cyan group-hover:scale-105 transition-transform">
+                        <!-- Custom SVG Moon Rover/Gear Emblem -->
+                        <svg class="w-6 h-6 text-cyanGlow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="9" stroke-dasharray="2 2" />
+                            <path d="M12 3a9 9 0 0 1 9 9h-9V3z" fill="currentColor" fill-opacity="0.3"/>
+                            <path d="M8 12l2 2 4-4" />
+                            <circle cx="12" cy="12" r="3" class="text-cyanGlow" />
+                        </svg>
+                        <span class="absolute -bottom-1 -right-1 text-[8px] font-heading font-black bg-cyanGlow text-black px-1 rounded">38056</span>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <span class="font-heading font-black text-lg tracking-wider text-white group-hover:text-cyanGlow transition-colors leading-none flex items-center gap-1.5">
+                            MOONWALKERS
+                        </span>
+                        <span class="text-[10px] text-gray-400 font-mono tracking-widest uppercase mt-0.5">FTC TEAM #38056</span>
+                    </div>
+                </a>
+
+                <!-- Official FIRST Tech Challenge Branding Badge -->
+                <div class="hidden xl:flex items-center gap-2 pl-4 border-l border-gray-800">
+                    <!-- Official FIRST Icon SVG Vector -->
+                    <svg class="h-6 w-auto text-white" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 32V8L12 0L24 8V32H0Z" fill="#0066B2"/>
+                        <circle cx="42" cy="16" r="14" fill="#ED1C24"/>
+                        <rect x="68" y="2" width="28" height="28" fill="#F58220"/>
+                    </svg>
+                    <div class="flex flex-col text-[9px] font-heading leading-tight text-gray-400">
+                        <span class="text-white font-bold tracking-wider">FIRST®</span>
+                        <span class="text-cyanGlow">TECH CHALLENGE</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-6 text-xs font-heading font-semibold tracking-wider">
+                <a href="index.html" class="text-cyanGlow border-b-2 border-cyanGlow py-1">HOME</a>
+                <a href="journey.html" class="text-gray-300 hover:text-cyanGlow transition-colors py-1">OUR FLL STORY</a>
+                <a href="team.html" class="text-gray-300 hover:text-cyanGlow transition-colors py-1">MEET THE TEAM</a>
+                <a href="blog.html" class="text-gray-300 hover:text-cyanGlow transition-colors py-1">ENGINEERING LOGS</a>
+                <a href="#code-spotlight" class="text-gray-300 hover:text-cyanGlow transition-colors py-1">RESOURCES & CODE</a>
+                <a href="connect.html" class="text-gray-300 hover:text-cyanGlow transition-colors py-1">OUTREACH</a>
+            </nav>
+
+            <!-- Action Button & Mobile Toggle -->
+            <div class="flex items-center gap-3">
+                <a href="sponsors.html" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-cyanGlow to-cyanHover text-black font-heading font-extrabold text-xs uppercase tracking-wider shadow-neon-cyan hover:shadow-neon-cyan-lg transform hover:-translate-y-0.5 transition-all">
+                    <i data-lucide="heart" class="w-3.5 h-3.5 fill-black"></i>
+                    <span>Sponsor Us</span>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" aria-label="Toggle Navigation Menu" class="lg:hidden p-2.5 rounded-lg bg-moonCard border border-cyanGlow/30 text-gray-300 hover:text-cyanGlow hover:border-cyanGlow focus:outline-none transition-colors">
+                    <i data-lucide="menu" id="menu-icon-open" class="w-6 h-6"></i>
+                    <i data-lucide="x" id="menu-icon-close" class="w-6 h-6 hidden"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. MOBILE NAVIGATION DRAWER MENU -->
+    <div id="mobile-drawer" class="fixed inset-0 z-30 bg-moonDark/95 backdrop-blur-xl lg:hidden transform translate-x-full transition-transform duration-300 ease-in-out pt-[90px] px-6 pb-10 flex flex-col justify-between overflow-y-auto">
+        <div class="flex flex-col gap-4 font-heading text-base font-semibold">
+            <!-- FIRST Badge inside Mobile Menu -->
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-moonCard border border-cyanGlow/20 mb-2">
+                <svg class="h-8 w-auto" viewBox="0 0 100 40" fill="none">
+                    <path d="M0 32V8L12 0L24 8V32H0Z" fill="#0066B2"/>
+                    <circle cx="42" cy="16" r="14" fill="#ED1C24"/>
+                    <rect x="68" y="2" width="28" height="28" fill="#F58220"/>
+                </svg>
+                <div>
+                    <div class="text-xs text-white font-bold">FIRST® Tech Challenge</div>
+                    <div class="text-[10px] text-cyanGlow">Team #38056 MoonWalkers</div>
+                </div>
+            </div>
+
+            <a href="index.html" class="mobile-nav-link p-3 rounded-lg bg-cyanGlow/10 text-cyanGlow border border-cyanGlow/30 flex items-center justify-between">
+                <span>HOME</span> <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+            <a href="journey.html" class="mobile-nav-link p-3 rounded-lg hover:bg-moonCard text-gray-300 hover:text-cyanGlow transition-colors flex items-center justify-between">
+                <span>OUR FLL STORY</span> <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+            <a href="team.html" class="mobile-nav-link p-3 rounded-lg hover:bg-moonCard text-gray-300 hover:text-cyanGlow transition-colors flex items-center justify-between">
+                <span>MEET THE TEAM</span> <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+            <a href="blog.html" class="mobile-nav-link p-3 rounded-lg hover:bg-moonCard text-gray-300 hover:text-cyanGlow transition-colors flex items-center justify-between">
+                <span>ENGINEERING LOGS</span> <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+            <a href="#code-spotlight" class="mobile-nav-link p-3 rounded-lg hover:bg-moonCard text-gray-300 hover:text-cyanGlow transition-colors flex items-center justify-between">
+                <span>RESOURCES & CODE</span> <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+            <a href="connect.html" class="mobile-nav-link p-3 rounded-lg hover:bg-moonCard text-gray-300 hover:text-cyanGlow transition-colors flex items-center justify-between">
+                <span>OUTREACH</span> <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+            <a href="sponsors.html" class="mobile-nav-link p-3 rounded-lg hover:bg-moonCard text-gray-300 hover:text-cyanGlow transition-colors flex items-center justify-between">
+                <span>SPONSORS</span> <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-gray-800 flex flex-col gap-3">
+            <a href="sponsors.html" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyanGlow to-cyanHover text-black font-heading font-black text-center text-sm uppercase tracking-wider shadow-neon-cyan">
+                Sponsor MoonWalkers
+            </a>
+            <div class="flex items-center justify-center gap-4 text-gray-400 pt-2">
+                <a href="https://github.com" target="_blank" class="p-2 hover:text-cyanGlow"><i class="fa-brands fa-github text-xl"></i></a>
+                <a href="https://youtube.com" target="_blank" class="p-2 hover:text-cyanGlow"><i class="fa-brands fa-youtube text-xl"></i></a>
+                <a href="https://instagram.com" target="_blank" class="p-2 hover:text-cyanGlow"><i class="fa-brands fa-instagram text-xl"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. HERO SECTION -->
+    <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-12 pb-20 bg-grid-pattern bg-[size:30px_30px]">
+        <!-- Background Ambient Glow & Grid Effects -->
+        <div class="absolute inset-0 bg-gradient-to-b from-moonDark via-moonDark/90 to-moonDark pointer-events-none"></div>
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyanGlow/10 rounded-full blur-[140px] pointer-events-none animate-pulse-glow"></div>
+        <div class="absolute bottom-10 right-10 w-[350px] h-[350px] bg-firstBlue/15 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <!-- Rookie / Season Badge Row -->
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-cyanGlow/40 bg-moonCard/80 backdrop-blur-md mb-8 shadow-neon-cyan">
+                <span class="flex h-2.5 w-2.5 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyanGlow opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyanGlow"></span>
+                </span>
+                <span class="text-xs font-mono font-bold tracking-widest uppercase text-cyanGlow">FTC #38056 • Season 2026-2027</span>
+                <span class="text-gray-600">|</span>
+                <span class="text-xs font-heading font-semibold text-gray-300 flex items-center gap-1">
+                    <i data-lucide="rocket" class="w-3.5 h-3.5 text-cyanGlow"></i> Active Orbit
+                </span>
+            </div>
+
+            <!-- Main Title & Catchy Slogan -->
+            <h1 class="font-heading font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-none uppercase mb-6">
+                From <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyanGlow via-white to-cyanGlow glow-text-cyan">LEGO Bricks</span> <br class="hidden sm:inline">
+                To <span class="text-white drop-shadow-[0_0_20px_rgba(0,240,255,0.4)]">Metallic Orbits</span>
+            </h1>
+
+            <p class="max-w-3xl mx-auto text-gray-300 text-base sm:text-xl font-light mb-10 leading-relaxed">
+                We are <strong class="text-cyanGlow font-semibold">MoonWalkers #38056</strong>. Evolving from FIRST LEGO League champions to full metal precision FTC robotics engineering—building custom swerve drivetrains, Java autonomous motion algorithms, and open-source STEM tools.
+            </p>
+
+            <!-- Action CTAs -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <a href="journey.html" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyanGlow via-cyanGlow to-cyanHover text-black font-heading font-black text-sm uppercase tracking-wider rounded-xl shadow-neon-cyan hover:shadow-neon-cyan-lg transform hover:-translate-y-1 transition-all text-center flex items-center justify-center gap-2">
+                    <span>Explore Our Journey</span>
+                    <i data-lucide="compass" class="w-4 h-4"></i>
+                </a>
+                <a href="#code-spotlight" class="w-full sm:w-auto px-8 py-4 bg-moonCard/80 hover:bg-moonCard border border-cyanGlow/40 hover:border-cyanGlow text-white font-heading font-bold text-sm uppercase tracking-wider rounded-xl backdrop-blur-md transition-all text-center flex items-center justify-center gap-2 group">
+                    <i data-lucide="code-2" class="w-4 h-4 text-cyanGlow"></i>
+                    <span>Open Source Java Lib</span>
+                    <i data-lucide="arrow-down" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform text-cyanGlow"></i>
+                </a>
+            </div>
+
+            <!-- Quick Stats Bar (Glassmorphic) -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto pt-6 border-t border-cyanGlow/20">
+                <div class="glass-panel rounded-2xl p-4 sm:p-6 text-center transform hover:-translate-y-1 transition-transform">
+                    <div class="font-heading font-black text-3xl sm:text-4xl text-cyanGlow mb-1">6+</div>
+                    <div class="text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider">Years in FIRST</div>
+                </div>
+                <div class="glass-panel rounded-2xl p-4 sm:p-6 text-center transform hover:-translate-y-1 transition-transform">
+                    <div class="font-heading font-black text-3xl sm:text-4xl text-white mb-1">4,500+</div>
+                    <div class="text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider">Youth Impacted</div>
+                </div>
+                <div class="glass-panel rounded-2xl p-4 sm:p-6 text-center transform hover:-translate-y-1 transition-transform">
+                    <div class="font-heading font-black text-3xl sm:text-4xl text-cyanGlow mb-1">14</div>
+                    <div class="text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider">Awards & Honors</div>
+                </div>
+                <div class="glass-panel rounded-2xl p-4 sm:p-6 text-center transform hover:-translate-y-1 transition-transform">
+                    <div class="font-heading font-black text-3xl sm:text-4xl text-white mb-1">100%</div>
+                    <div class="text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider">Open Source CAD/Code</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. LATEST NEWS & LIVE UPDATES SECTION -->
+    <section class="py-20 bg-moonNavy/50 relative border-t border-b border-cyanGlow/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <div class="text-cyanGlow font-mono text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-2">
+                        <i data-lucide="radio" class="w-4 h-4 animate-pulse"></i> Mission Control Bulletin
+                    </div>
+                    <h2 class="font-heading font-black text-3xl sm:text-4xl text-white uppercase tracking-tight">
+                        Latest Updates & Insights
+                    </h2>
+                </div>
+                <a href="blog.html" class="mt-4 md:mt-0 inline-flex items-center gap-2 text-cyanGlow hover:text-white font-heading text-xs font-bold uppercase tracking-wider transition-colors">
+                    View All Engineering Logs <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="glass-panel rounded-2xl overflow-hidden group glass-panel-hover transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 bg-moonCard overflow-hidden">
+                            <!-- High Tech Illustration Canvas Placeholder -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-cyanGlow/20 via-moonCard to-moonDark flex items-center justify-center">
+                                <i data-lucide="cpu" class="w-20 h-20 text-cyanGlow/40 group-hover:scale-110 transition-transform duration-500"></i>
+                            </div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-moonDark/80 backdrop-blur-md border border-cyanGlow/30 text-cyanGlow font-mono text-[10px] font-bold uppercase">
+                                Software Engine
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs text-gray-400 font-mono">OCTOBER 2026</span>
+                            <h3 class="font-heading font-bold text-xl text-white mt-1 mb-3 group-hover:text-cyanGlow transition-colors">
+                                MoonWalkers PedroPathing Kinematics Released
+                            </h3>
+                            <p class="text-gray-300 text-sm font-light line-clamp-3">
+                                Our autonomous team published an optimized PedroPathing spline library designed for FTC field obstacle navigation and zero-drift localization.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="blog.html" class="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-cyanGlow group-hover:translate-x-1 transition-transform">
+                            Read Log Entry <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-panel rounded-2xl overflow-hidden group glass-panel-hover transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 bg-moonCard overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-firstBlue/30 via-moonCard to-moonDark flex items-center justify-center">
+                                <i data-lucide="cog" class="w-20 h-20 text-cyanGlow/40 group-hover:rotate-45 transition-transform duration-700"></i>
+                            </div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-moonDark/80 backdrop-blur-md border border-cyanGlow/30 text-cyanGlow font-mono text-[10px] font-bold uppercase">
+                                Hardware CAD
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs text-gray-400 font-mono">SEPTEMBER 2026</span>
+                            <h3 class="font-heading font-bold text-xl text-white mt-1 mb-3 group-hover:text-cyanGlow transition-colors">
+                                LunarSwerve V3 Modules 3D Printing Complete
+                            </h3>
+                            <p class="text-gray-300 text-sm font-light line-clamp-3">
+                                Transitioning from belt drives to custom planetary bevel gears milled in our high-precision CNC setup for max acceleration on the game perimeter.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="blog.html" class="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-cyanGlow group-hover:translate-x-1 transition-transform">
+                            Read Log Entry <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-panel rounded-2xl overflow-hidden group glass-panel-hover transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 bg-moonCard overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-ftcOrange/20 via-moonCard to-moonDark flex items-center justify-center">
+                                <i data-lucide="users" class="w-20 h-20 text-cyanGlow/40 group-hover:scale-110 transition-transform duration-500"></i>
+                            </div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-moonDark/80 backdrop-blur-md border border-cyanGlow/30 text-cyanGlow font-mono text-[10px] font-bold uppercase">
+                                Community Outreach
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs text-gray-400 font-mono">AUGUST 2026</span>
+                            <h3 class="font-heading font-bold text-xl text-white mt-1 mb-3 group-hover:text-cyanGlow transition-colors">
+                                Mentoring 8 Local FLL Teams for 2026 Season
+                            </h3>
+                            <p class="text-gray-300 text-sm font-light line-clamp-3">
+                                Giving back to our roots! MoonWalkers team members hosted weekend workshops on Spike Prime block coding and core values leadership.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="connect.html" class="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-cyanGlow group-hover:translate-x-1 transition-transform">
+                            Explore Outreach Programs <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. EVOLUTION TIMELINE (FLL TO FTC) -->
+    <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass-panel rounded-3xl p-8 sm:p-12 relative overflow-hidden border border-cyanGlow/30">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-cyanGlow/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-mono font-bold text-cyanGlow tracking-widest uppercase mb-2 block">
+                    • Structural Progression Roadmap •
+                </span>
+                <h2 class="font-heading font-black text-3xl sm:text-5xl text-white uppercase tracking-tight">
+                    The MoonWalkers Journey
+                </h2>
+                <p class="text-gray-300 text-base mt-3">
+                    From elementary LEGO Spike Prime programming to real-world Java runtime APIs, custom CNC milling, and strategic FIRST Tech Challenge competitions.
+                </p>
+            </div>
+
+            <!-- Flowchart Nodes -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                
+                <!-- Connector Line on Desktop -->
+                <div class="hidden md:block absolute top-1/2 left-12 right-12 h-1 bg-gradient-to-r from-ftcOrange via-cyanGlow to-cyanGlow -translate-y-6 z-0"></div>
+
+                <!-- Phase 1 -->
+                <div class="relative z-10 bg-moonDark border border-ftcOrange/40 rounded-2xl p-6 text-center hover:border-ftcOrange transition-colors shadow-lg">
+                    <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-ftcOrange/20 border border-ftcOrange/60 flex items-center justify-center text-ftcOrange shadow-md">
+                        <i data-lucide="boxes" class="w-7 h-7"></i>
+                    </div>
+                    <span class="inline-block px-3 py-1 rounded-full bg-ftcOrange/20 text-ftcOrange font-mono text-[10px] font-bold uppercase mb-2">
+                        Phase I • Legacy
+                    </span>
+                    <h3 class="font-heading text-xl font-bold text-white">FLL Foundation</h3>
+                    <p class="text-cyanGlow font-mono text-xs font-semibold mt-1">2020 – 2024</p>
+                    <p class="text-xs text-gray-400 mt-3 leading-relaxed">
+                        Conquered state championships in FIRST LEGO League, mastering autonomous sensor loops and team core values.
+                    </p>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="relative z-10 bg-moonDark border border-cyanGlow/50 rounded-2xl p-6 text-center hover:border-cyanGlow transition-colors shadow-neon-cyan">
+                    <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-cyanGlow/20 border border-cyanGlow flex items-center justify-center text-cyanGlow shadow-neon-cyan">
+                        <i data-lucide="cpu" class="w-7 h-7"></i>
+                    </div>
+                    <span class="inline-block px-3 py-1 rounded-full bg-cyanGlow/20 text-cyanGlow font-mono text-[10px] font-bold uppercase mb-2">
+                        Phase II • Transition
+                    </span>
+                    <h3 class="font-heading text-xl font-bold text-white">CAD & Java Level-Up</h3>
+                    <p class="text-cyanGlow font-mono text-xs font-semibold mt-1">2025</p>
+                    <p class="text-xs text-gray-300 mt-3 leading-relaxed">
+                        Mastered Onshape 3D modeling, Android Studio SDK, and FTC Control Hub rev architecture ahead of official rookie registration.
+                    </p>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="relative z-10 bg-moonDark border border-cyanGlow/50 rounded-2xl p-6 text-center hover:border-cyanGlow transition-colors shadow-neon-cyan">
+                    <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-cyanGlow to-cyanHover text-black flex items-center justify-center shadow-neon-cyan">
+                        <i data-lucide="rocket" class="w-7 h-7"></i>
+                    </div>
+                    <span class="inline-block px-3 py-1 rounded-full bg-cyanGlow text-black font-mono text-[10px] font-black uppercase mb-2">
+                        Phase III • Active Orbit
+                    </span>
+                    <h3 class="font-heading text-xl font-bold text-white">FTC Team #38056</h3>
+                    <p class="text-cyanGlow font-mono text-xs font-semibold mt-1">2026 – Present</p>
+                    <p class="text-xs text-gray-300 mt-3 leading-relaxed">
+                        Deploying custom swerve drive modules, vision pipeline navigation, and open-source software libraries for the FTC community.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. TECHNICAL HIGHLIGHTS & INNOVATIONS -->
+    <section class="py-20 bg-moonNavy/30 border-t border-cyanGlow/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-mono font-bold text-cyanGlow tracking-widest uppercase mb-2 block">
+                    • Engineering Excellence •
+                </span>
+                <h2 class="font-heading font-black text-3xl sm:text-5xl text-white uppercase tracking-tight">
+                    Technical Highlights
+                </h2>
+                <p class="text-gray-400 text-sm sm:text-base mt-2">
+                    Combining advanced mechanics, sensor fusion, and real-time Java telemetry to achieve competitive robotics precision.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Highlight 1 -->
+                <div class="glass-panel p-6 rounded-2xl hover:-translate-y-1 transition-transform border-l-4 border-l-cyanGlow">
+                    <div class="w-12 h-12 rounded-xl bg-cyanGlow/10 text-cyanGlow flex items-center justify-center mb-4">
+                        <i data-lucide="compass" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-white mb-2">LunarSwerve Kinematics</h3>
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        4-wheel independent swerve modules with high-speed rotation vector compensation and custom CNC aluminum housing.
+                    </p>
+                </div>
+
+                <!-- Highlight 2 -->
+                <div class="glass-panel p-6 rounded-2xl hover:-translate-y-1 transition-transform border-l-4 border-l-cyanGlow">
+                    <div class="w-12 h-12 rounded-xl bg-cyanGlow/10 text-cyanGlow flex items-center justify-center mb-4">
+                        <i data-lucide="eye" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-white mb-2">OpenCV Vision Pipeline</h3>
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Hardware-accelerated AprilTag detection using webcam camera feeds for sub-millimeter auto-alignment to game elements.
+                    </p>
+                </div>
+
+                <!-- Highlight 3 -->
+                <div class="glass-panel p-6 rounded-2xl hover:-translate-y-1 transition-transform border-l-4 border-l-cyanGlow">
+                    <div class="w-12 h-12 rounded-xl bg-cyanGlow/10 text-cyanGlow flex items-center justify-center mb-4">
+                        <i data-lucide="activity" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-white mb-2">PedroPathing Splines</h3>
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Custom Bezier curve path planning algorithm with live feedback odometry dead-wheels for smooth high-speed velocity profiles.
+                    </p>
+                </div>
+
+                <!-- Highlight 4 -->
+                <div class="glass-panel p-6 rounded-2xl hover:-translate-y-1 transition-transform border-l-4 border-l-cyanGlow">
+                    <div class="w-12 h-12 rounded-xl bg-cyanGlow/10 text-cyanGlow flex items-center justify-center mb-4">
+                        <i data-lucide="zap" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-white mb-2">Smart NeoPixel Feedback</h3>
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Driver station status display via addressable LED lighting indicating intake lock, vision lock, and power draw states.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CODE & RESOURCE SPOTLIGHT SECTION -->
+    <section id="code-spotlight" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-5">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyanGlow/10 border border-cyanGlow/30 text-cyanGlow font-mono text-xs font-bold uppercase mb-4">
+                    <i data-lucide="code" class="w-3.5 h-3.5"></i> Open Source Robotics Software
+                </div>
+                <h2 class="font-heading font-black text-3xl sm:text-5xl text-white uppercase tracking-tight leading-tight mb-6">
+                    MoonWalkers FTC Java Library
+                </h2>
+                <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+                    We believe in raising the floor and ceiling for every FIRST Tech Challenge team. Our custom Java autonomous kinematics, dead-wheel odometry, and teleop motion routines are freely available on GitHub.
+                </p>
+
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-start gap-3">
+                        <div class="p-1 rounded bg-cyanGlow/20 text-cyanGlow mt-0.5"><i data-lucide="check" class="w-4 h-4"></i></div>
+                        <span class="text-xs sm:text-sm text-gray-300">Compatible with FTC SDK 9.0+ and REV Control Hub</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="p-1 rounded bg-cyanGlow/20 text-cyanGlow mt-0.5"><i data-lucide="check" class="w-4 h-4"></i></div>
+                        <span class="text-xs sm:text-sm text-gray-300">Plug-and-play Swerve & Mecanum Kinematics solvers</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="p-1 rounded bg-cyanGlow/20 text-cyanGlow mt-0.5"><i data-lucide="check" class="w-4 h-4"></i></div>
+                        <span class="text-xs sm:text-sm text-gray-300">Comprehensive documentation & tuning guides</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://github.com" target="_blank" class="px-6 py-3 rounded-xl bg-cyanGlow text-black font-heading font-extrabold text-xs uppercase tracking-wider shadow-neon-cyan hover:shadow-neon-cyan-lg transition-all flex items-center gap-2">
+                        <i class="fa-brands fa-github text-base"></i> View GitHub Repo
+                    </a>
+                    <button onclick="copyCodeSnippet()" class="px-6 py-3 rounded-xl bg-moonCard border border-cyanGlow/40 hover:border-cyanGlow text-white font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
+                        <i data-lucide="copy" class="w-4 h-4 text-cyanGlow"></i> <span id="copy-btn-text">Copy Code</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Code Window Viewer -->
+            <div class="lg:col-span-7">
+                <div class="rounded-2xl overflow-hidden border border-cyanGlow/30 shadow-2xl bg-[#090d16]">
+                    <!-- Window Header bar -->
+                    <div class="px-4 py-3 bg-[#0f172a] border-b border-gray-800 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                            <span class="ml-2 font-mono text-xs text-gray-400">MoonWalkersAutoDrive.java</span>
+                        </div>
+                        <span class="font-mono text-[10px] text-cyanGlow uppercase tracking-wider">FTC Java OpMode</span>
+                    </div>
+
+                    <!-- Code Content Area -->
+                    <pre class="p-6 font-code text-xs text-gray-300 overflow-x-auto leading-relaxed select-all"><code><span class="text-purple-400">package</span> org.firstinspires.ftc.team38056.opmodes;
+
+<span class="text-purple-400">import</span> com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+<span class="text-purple-400">import</span> com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+<span class="text-purple-400">import</span> org.moonwalkers.kinematics.SwerveDriveSubsystem;
+<span class="text-purple-400">import</span> org.moonwalkers.pathfinding.Pose2d;
+
+<span class="text-cyanGlow">@Autonomous</span>(name = <span class="text-green-300">"MoonWalkers: Auto Lunar Scribe"</span>, group = <span class="text-green-300">"Autonomous"</span>)
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">MoonWalkersAutoDrive</span> <span class="text-purple-400">extends</span> LinearOpMode {
+
+    <span class="text-purple-400">private</span> SwerveDriveSubsystem drive;
+
+    <span class="text-cyanGlow">@Override</span>
+    <span class="text-purple-400">public void</span> <span class="text-blue-400">runOpMode</span>() <span class="text-purple-400">throws</span> InterruptedException {
+        <span class="text-gray-500">// Initialize custom 4-wheel independent swerve drive</span>
+        drive = <span class="text-purple-400">new</span> SwerveDriveSubsystem(hardwareMap);
+        drive.setPoseEstimate(<span class="text-purple-400">new</span> Pose2d(<span class="text-orange-400">0</span>, <span class="text-orange-400">0</span>, Math.toRadians(<span class="text-orange-400">0</span>)));
+
+        telemetry.addData(<span class="text-green-300">"Status"</span>, <span class="text-green-300">"MoonWalkers Systems Calibrated [38056]"</span>);
+        telemetry.update();
+
+        waitForStart();
+
+        <span class="text-purple-400">if</span> (isStopRequested()) <span class="text-purple-400">return</span>;
+
+        <span class="text-gray-500">// Execute trajectory to target scoring zone with AprilTag vision alignment</span>
+        drive.followPathSpline(
+            <span class="text-purple-400">new</span> Pose2d(<span class="text-orange-400">48.0</span>, <span class="text-orange-400">24.0</span>, Math.toRadians(<span class="text-orange-400">90.0</span>))
+        );
+    }
+}</code></pre>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 8. COMMUNITY OUTREACH & IMPACT -->
+    <section class="py-20 bg-moonNavy/40 border-t border-cyanGlow/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 relative">
+                    <div class="glass-panel rounded-3xl p-8 relative z-10 border border-cyanGlow/30">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-cyanGlow/20 text-cyanGlow flex items-center justify-center font-heading font-black">
+                                <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-xl text-white">Gracious Professionalism®</h3>
+                                <p class="text-xs text-gray-400">Spreading STEM across schools & community hubs</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="p-4 rounded-xl bg-moonDark/80 border border-gray-800">
+                                <div class="font-heading font-bold text-cyanGlow text-sm">FLL Mentorship Network</div>
+                                <p class="text-xs text-gray-300 mt-1">Guiding 8 elementary and middle school teams in spike prime coding and core values presentation.</p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-moonDark/80 border border-gray-800">
+                                <div class="font-heading font-bold text-cyanGlow text-sm">Girls in Robotics Workshops</div>
+                                <p class="text-xs text-gray-300 mt-1">Free CAD and programming bootcamps held quarterly at local public libraries.</p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-moonDark/80 border border-gray-800">
+                                <div class="font-heading font-bold text-cyanGlow text-sm">Open STEM Curriculum</div>
+                                <p class="text-xs text-gray-300 mt-1">Publishing free lesson plans and FTC hardware guides for rookie teams globally.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <span class="text-xs font-mono font-bold text-cyanGlow tracking-widest uppercase mb-2 block">
+                        • Community First •
+                    </span>
+                    <h2 class="font-heading font-black text-3xl sm:text-5xl text-white uppercase tracking-tight mb-6">
+                        Empowering Next-Gen Innovators
+                    </h2>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+                        At Team MoonWalkers #38056, our commitment extends far beyond the competition field. We actively spark interest in science, technology, engineering, and math for students of all backgrounds.
+                    </p>
+                    <a href="connect.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyanGlow to-cyanHover text-black font-heading font-extrabold text-xs uppercase tracking-wider shadow-neon-cyan">
+                        <span>Get Involved / Contact Us</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. SPONSORS SHOWCASE & TIER BANNER -->
+    <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="text-xs font-mono font-bold text-cyanGlow tracking-widest uppercase mb-2 block">
+            • Fueling Our Mission to Worlds •
+        </span>
+        <h2 class="font-heading font-black text-3xl sm:text-5xl text-white uppercase tracking-tight mb-4">
+            Our Valued Partners & Sponsors
+        </h2>
+        <p class="text-gray-300 text-sm max-w-2xl mx-auto mb-16">
+            Without the generous backing of our corporate and community partners, our high-precision machinery, travel, and outreach wouldn't be possible.
+        </p>
+
+        <!-- Platinum Tier -->
+        <div class="mb-12">
+            <span class="text-[10px] font-heading font-bold text-cyanGlow uppercase tracking-widest px-3 py-1 rounded-full bg-cyanGlow/10 border border-cyanGlow/30 inline-block mb-6">
+                Platinum Tier Sponsors
+            </span>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center justify-center">
+                <div class="glass-panel p-6 rounded-2xl flex items-center justify-center h-28 hover:border-cyanGlow transition-colors">
+                    <span class="font-heading font-black text-lg text-gray-300 hover:text-cyanGlow">Qualcomm®</span>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl flex items-center justify-center h-28 hover:border-cyanGlow transition-colors">
+                    <span class="font-heading font-black text-lg text-gray-300 hover:text-cyanGlow">REV Robotics</span>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl flex items-center justify-center h-28 hover:border-cyanGlow transition-colors">
+                    <span class="font-heading font-black text-lg text-gray-300 hover:text-cyanGlow">PTC Onshape</span>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl flex items-center justify-center h-28 hover:border-cyanGlow transition-colors">
+                    <span class="font-heading font-black text-lg text-gray-300 hover:text-cyanGlow">Intuitive Robotics</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sponsor Call To Action Box -->
+        <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-cyanGlow/40 max-w-4xl mx-auto relative overflow-hidden bg-gradient-to-b from-moonCard to-moonDark">
+            <div class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div class="text-left">
+                    <h3 class="font-heading font-bold text-2xl text-white">Become a MoonWalkers Sponsor</h3>
+                    <p class="text-xs sm:text-sm text-gray-300 mt-1">Help fund our CNC parts, travel to Regionals, and local STEM workshops.</p>
+                </div>
+                <div class="flex gap-4 shrink-0">
+                    <a href="sponsors.html" class="px-6 py-3 rounded-xl bg-cyanGlow text-black font-heading font-extrabold text-xs uppercase tracking-wider shadow-neon-cyan hover:shadow-neon-cyan-lg transition-all">
+                        View Sponsor Packet
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. MODERN FOOTER -->
+    <footer class="bg-moonDark border-t border-cyanGlow/20 pt-16 pb-12 text-gray-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                
+                <!-- Col 1: Team & FIRST Logos -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-9 h-9 rounded-lg bg-cyanGlow/20 border border-cyanGlow/50 flex items-center justify-center text-cyanGlow">
+                            <i data-lucide="orbit" class="w-5 h-5"></i>
+                        </div>
+                        <span class="font-heading font-black text-xl text-white">MOONWALKERS #38056</span>
+                    </div>
+                    <p class="text-gray-400 text-xs leading-relaxed max-w-sm mb-6">
+                        FIRST Tech Challenge Team #38056 'MoonWalkers' is a student-led robotics program dedicated to STEM education, engineering excellence, and open-source innovation.
+                    </p>
+
+                    <!-- FIRST Official Badge -->
+                    <div class="flex items-center gap-3 p-3 rounded-xl bg-moonNavy border border-gray-800 w-fit">
+                        <svg class="h-6 w-auto" viewBox="0 0 100 40" fill="none">
+                            <path d="M0 32V8L12 0L24 8V32H0Z" fill="#0066B2"/>
+                            <circle cx="42" cy="16" r="14" fill="#ED1C24"/>
+                            <rect x="68" y="2" width="28" height="28" fill="#F58220"/>
+                        </svg>
+                        <div class="text-[10px] font-heading leading-tight">
+                            <div class="text-white font-bold">FIRST® Tech Challenge</div>
+                            <div class="text-cyanGlow">Official Team #38056</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div>
+                    <h4 class="font-heading font-bold text-white uppercase text-xs tracking-wider mb-4">Navigation</h4>
+                    <ul class="space-y-2.5 font-heading text-[11px]">
+                        <li><a href="index.html" class="hover:text-cyanGlow transition-colors">Home Page</a></li>
+                        <li><a href="journey.html" class="hover:text-cyanGlow transition-colors">Our FLL Story</a></li>
+                        <li><a href="team.html" class="hover:text-cyanGlow transition-colors">Meet the Team</a></li>
+                        <li><a href="blog.html" class="hover:text-cyanGlow transition-colors">Engineering Logs</a></li>
+                        <li><a href="connect.html" class="hover:text-cyanGlow transition-colors">Outreach & STEM</a></li>
+                        <li><a href="sponsors.html" class="hover:text-cyanGlow transition-colors">Sponsorship Kit</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Resources -->
+                <div>
+                    <h4 class="font-heading font-bold text-white uppercase text-xs tracking-wider mb-4">Resources</h4>
+                    <ul class="space-y-2.5 font-heading text-[11px]">
+                        <li><a href="https://github.com" target="_blank" class="hover:text-cyanGlow transition-colors">GitHub Java Library</a></li>
+                        <li><a href="#code-spotlight" class="hover:text-cyanGlow transition-colors">Onshape CAD Models</a></li>
+                        <li><a href="blog.html" class="hover:text-cyanGlow transition-colors">Swerve Tuning Guide</a></li>
+                        <li><a href="https://www.firstinspires.org/robotics/ftc" target="_blank" class="hover:text-cyanGlow transition-colors">FIRST® Official Website</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact & Socials -->
+                <div>
+                    <h4 class="font-heading font-bold text-white uppercase text-xs tracking-wider mb-4">Connect</h4>
+                    <div class="space-y-3 text-xs mb-4">
+                        <p class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-cyanGlow"></i> ftcmoonwalkers@gmail.com</p>
+                        <p class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-cyanGlow"></i> Regional League • USA</p>
+                    </div>
+                    <div class="flex items-center gap-3 text-base">
+                        <a href="https://github.com" target="_blank" aria-label="GitHub" class="w-8 h-8 rounded-lg bg-moonNavy border border-gray-800 flex items-center justify-center text-gray-300 hover:text-cyanGlow hover:border-cyanGlow transition-colors"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://youtube.com" target="_blank" aria-label="YouTube" class="w-8 h-8 rounded-lg bg-moonNavy border border-gray-800 flex items-center justify-center text-gray-300 hover:text-cyanGlow hover:border-cyanGlow transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="w-8 h-8 rounded-lg bg-moonNavy border border-gray-800 flex items-center justify-center text-gray-300 hover:text-cyanGlow hover:border-cyanGlow transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Disclaimer & Copyright Bar -->
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] text-gray-500">
+                <p>© 2026 FTC Team #38056 MoonWalkers. All Rights Reserved.</p>
+                <p class="max-w-xl text-center md:text-right">
+                    FIRST®, FIRST® Tech Challenge, and Gracious Professionalism® are registered trademarks of For Inspiration and Recognition of Science and Technology (FIRST®). This website is independently created and maintained by Team 38056.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Mobile Menu Drawer Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileDrawer = document.getElementById('mobile-drawer');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function toggleMobileMenu() {
+            const isOpen = !mobileDrawer.classList.contains('translate-x-full');
+            if (isOpen) {
+                mobileDrawer.classList.add('translate-x-full');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            } else {
+                mobileDrawer.classList.remove('translate-x-full');
+                menuIconOpen.classList.add('hidden');
+                menuIconClose.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+            }
+        }
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        }
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileDrawer.classList.add('translate-x-full');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            });
+        });
+
+        // 2. Interactive Code Copy Button
+        function copyCodeSnippet() {
+            const codeText = `package org.firstinspires.ftc.team38056.opmodes;
+
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import org.moonwalkers.kinematics.SwerveDriveSubsystem;
+import org.moonwalkers.pathfinding.Pose2d;
+
+@Autonomous(name = "MoonWalkers: Auto Lunar Scribe", group = "Autonomous")
+public class MoonWalkersAutoDrive extends LinearOpMode {
+
+    private SwerveDriveSubsystem drive;
+
+    @Override
+    public void runOpMode() throws InterruptedException {
+        drive = new SwerveDriveSubsystem(hardwareMap);
+        drive.setPoseEstimate(new Pose2d(0, 0, Math.toRadians(0)));
+
+        telemetry.addData("Status", "MoonWalkers Systems Calibrated [38056]");
+        telemetry.update();
+
+        waitForStart();
+
+        if (isStopRequested()) return;
+
+        drive.followPathSpline(
+            new Pose2d(48.0, 24.0, Math.toRadians(90.0))
+        );
+    }
+}`;
+
+            // Fallback for iFrame clipboard compliance
+            const textarea = document.createElement('textarea');
+            textarea.value = codeText;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                const copyBtnText = document.getElementById('copy-btn-text');
+                if (copyBtnText) {
+                    copyBtnText.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyBtnText.textContent = 'Copy Code';
+                    }, 2500);
+                }
+            } catch (err) {
+                console.error('Failed to copy code: ', err);
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+    </script>
+</body>
+</html>

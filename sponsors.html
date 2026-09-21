@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sponsors | MoonWalkers FTC #38056</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { cyberCyan: '#00f2fe', cyberBlue: '#0284c7', cyberDark: '#080c14' },
+                    fontFamily: { heading: ['Orbitron', 'sans-serif'], body: ['Inter', 'sans-serif'], code: ['Fira Code', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-cyberDark text-slate-100 min-h-screen antialiased flex flex-col justify-between pt-[76px]">
+
+    <!-- STICKY HEADER -->
+    <header class="bg-cyberDark/90 backdrop-blur-md border-b border-cyan-500/20 fixed top-0 left-0 right-0 z-50 h-[76px] flex items-center">
+        <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="bg-gradient-to-br from-cyan-500 to-blue-600 p-2 rounded-xl text-black font-black text-xs font-heading">FIRST</div>
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-2">
+                        <h1 class="font-heading font-extrabold text-lg text-white">MOONWALKERS</h1>
+                    </div>
+                    <span class="w-max flex-shrink-0 bg-cyan-500/10 border border-cyan-400/30 text-cyberCyan text-[10px] font-bold px-2 py-0.5 rounded-full font-code">FTC #38056</span>
+                </div>
+            </a>
+            <!-- DYNAMIC DESKTOP NAVIGATION CONTAINER -->
+            <nav id="desktop-nav" class="hidden md:flex items-center gap-6 ml-12 text-xs font-heading font-semibold uppercase tracking-widest">
+                <!-- Populated automatically by assets/js/nav.js -->
+            </nav>
+
+            <!-- MOBILE MENU BUTTON -->
+            <button id="mobileMenuBtn" class="md:hidden text-2xl text-slate-300 p-2" aria-label="Toggle Navigation">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- DYNAMIC MOBILE MENU DROPDOWN CONTAINER -->
+        <div id="mobileMenu" class="hidden md:hidden absolute top-[76px] left-0 right-0 bg-cyberDark/95 border-b border-cyan-500/20 p-6 shadow-2xl">
+            <div id="mobile-nav-links" class="flex flex-col gap-4 font-heading text-sm font-semibold">
+                <!-- Populated automatically by assets/js/nav.js -->
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow space-y-12 w-full">
+        
+        <!-- INTRO BANNER -->
+        <div class="text-center max-w-3xl mx-auto space-y-4">
+            <span class="text-cyberCyan font-code text-xs tracking-widest uppercase font-bold">// Our Backers</span>
+            <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white">Our Sponsors & Partners</h2>
+            <p class="text-slate-300 text-sm">
+                We are immensely grateful to the organizations empowering our robotics engineering, competition travel, and community outreach efforts.
+            </p>
+        </div>
+
+        <!-- 2-LOGOS-PER-ROW SPONSORS GRID -->
+        <section class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 class="font-heading text-lg font-bold text-cyberCyan flex items-center gap-2">
+                    <i data-lucide="award" class="w-5 h-5"></i> Official Sponsors
+                </h3>
+                <span class="font-code text-xs text-slate-400">2026 Season</span>
+            </div>
+
+            <!-- STRICT 2 LOGOS PER ROW GRID -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                
+                <!-- SPONSOR 1 -->
+                <div class="glass-card p-8 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all duration-300 flex flex-col items-center justify-center text-center space-y-4 group">
+                    <div class="h-36 w-full flex items-center justify-center p-4 bg-slate-900/60 rounded-xl border border-slate-800 group-hover:border-slate-700 transition">
+                        <img src="assets/images/sponsors/gobuilda.png" 
+                             alt="goBILDA" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/400x150/0f172a/00f2fe?text=goBILDA';" 
+                             class="max-h-full max-w-[95%] object-contain transition duration-300">
+                    </div>
+                    <div>
+                        <h4 class="font-heading font-bold text-white text-base">goBILDA</h4>
+                        <p class="text-slate-400 font-code text-xs mt-1">Bot Sponsor</p>
+                    </div>
+                </div>
+
+                <!-- SPONSOR 2 -->
+                <div class="glass-card p-8 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all duration-300 flex flex-col items-center justify-center text-center space-y-4 group">
+                    <div class="h-36 w-full flex items-center justify-center p-4 bg-slate-900/60 rounded-xl border border-slate-800 group-hover:border-slate-700 transition">
+                        <img src="assets/images/sponsors/rev_robotics_logo.jpeg" 
+                             alt="REV Robotics" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/400x150/0f172a/00f2fe?text=REV+Robotics';" 
+                             class="max-h-full max-w-[95%] object-contain transition duration-300">
+                    </div>
+                    <div>
+                        <h4 class="font-heading font-bold text-white text-base">REV Robotics</h4>
+                        <p class="text-slate-400 font-code text-xs mt-1">Control Hub Partner</p>
+                    </div>
+                </div>
+
+                <!-- SPONSOR 3 -->
+                <div class="glass-card p-8 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all duration-300 flex flex-col items-center justify-center text-center space-y-4 group">
+                    <div class="h-36 w-full flex items-center justify-center p-4 bg-slate-900/60 rounded-xl border border-slate-800 group-hover:border-slate-700 transition">
+                        <img src="assets/images/sponsors/FIRST_logo.png" 
+                             alt="Tech Corporate" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/400x150/0f172a/00f2fe?text=Tech+Sponsor';" 
+                             class="max-h-full max-w-[95%] object-contain transition duration-300">
+                    </div>
+                    <div>
+                        <h4 class="font-heading font-bold text-white text-base">FIRST Tech Challenge</h4>
+                        <p class="text-slate-400 font-code text-xs mt-1">Registration Sponsor</p>
+                    </div>
+                </div>
+
+                <!-- SPONSOR 4 -->
+                <div class="glass-card p-8 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all duration-300 flex flex-col items-center justify-center text-center space-y-4 group">
+                    <div class="h-24 w-full flex items-center justify-center p-4 bg-slate-900/60 rounded-xl border border-slate-800 group-hover:border-slate-700 transition">
+                        <img src="assets/images/sponsors/sponsor4.png" 
+                             alt="Community Foundation" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/400x150/0f172a/00f2fe?text=Community+Partner';" 
+                             class="max-h-full max-w-[80%] object-contain filter grayscale group-hover:grayscale-0 transition duration-300">
+                    </div>
+                    <div>
+                        <h4 class="font-heading font-bold text-white text-base">Community STEM Alliance</h4>
+                        <p class="text-slate-400 font-code text-xs mt-1">Outreach Partner</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BECOME A SPONSOR CALLOUT -->
+        <section class="glass-card p-8 sm:p-10 rounded-2xl border border-cyan-500/30 text-center space-y-4 bg-gradient-to-b from-cyan-950/20 to-transparent">
+            <h3 class="font-heading text-2xl font-bold text-white">Interested in Sponsoring MoonWalkers?</h3>
+            <p class="text-slate-300 text-sm max-w-xl mx-auto">
+                Help us inspire the next generation of engineers. Your tax-deductible sponsorship directly funds robot parts, competition entry fees, and STEM outreach.
+            </p>
+            <a href="connect.html" class="inline-block bg-cyberCyan text-black font-heading font-extrabold px-6 py-3 rounded-xl hover:bg-cyan-300 transition">
+                Get Sponsorship Packet
+            </a>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-950 border-t border-slate-800 text-slate-400 py-8 text-center text-xs">
+        <p>&copy; 2026 FTC Team #38056 MoonWalkers.</p>
+    </footer>
+    <!-- NAVIGATION & SCRIPTS -->
+    <script src="assets/js/nav.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>if (typeof lucide !== 'undefined') lucide.createIcons();</script>
+</body>
+</html>

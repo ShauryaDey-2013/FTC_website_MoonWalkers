@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet the Crew | MoonWalkers FTC #38056</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { cyberCyan: '#00f2fe', cyberBlue: '#0284c7', cyberDark: '#080c14' },
+                    fontFamily: { heading: ['Orbitron', 'sans-serif'], body: ['Inter', 'sans-serif'], code: ['Fira Code', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-cyberDark text-slate-100 min-h-screen antialiased flex flex-col justify-between pt-[76px]">
+
+    <header class="bg-cyberDark/90 backdrop-blur-md border-b border-cyan-500/20 fixed top-0 left-0 right-0 z-50 h-[76px] flex items-center">
+        <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="bg-gradient-to-br from-cyan-500 to-blue-600 p-2 rounded-xl text-black font-black text-xs font-heading">FIRST</div>
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-2">
+                        <h1 class="font-heading font-extrabold text-lg text-white">MOONWALKERS</h1>
+                    </div>
+                    <span class="w-max flex-shrink-0 bg-cyan-500/10 border border-cyan-400/30 text-cyberCyan text-[10px] font-bold px-2 py-0.5 rounded-full font-code">FTC #38056</span>
+                </div>
+            </a>
+            <!-- DYNAMIC DESKTOP NAVIGATION CONTAINER -->
+            <nav id="desktop-nav" class="hidden md:flex items-center gap-6 ml-12 text-xs font-heading font-semibold uppercase tracking-widest">
+                <!-- Populated automatically by assets/js/nav.js -->
+            </nav>
+
+            <!-- MOBILE MENU BUTTON -->
+            <button id="mobileMenuBtn" class="md:hidden text-2xl text-slate-300 p-2" aria-label="Toggle Navigation">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- DYNAMIC MOBILE MENU DROPDOWN CONTAINER -->
+        <div id="mobileMenu" class="hidden md:hidden absolute top-[76px] left-0 right-0 bg-cyberDark/95 border-b border-cyan-500/20 p-6 shadow-2xl">
+            <div id="mobile-nav-links" class="flex flex-col gap-4 font-heading text-sm font-semibold">
+                <!-- Populated automatically by assets/js/nav.js -->
+            </div>
+        </div>
+    </header>
+
+    <main class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow space-y-16">
+        <div class="text-center max-w-3xl mx-auto">
+            <h1 class="font-heading font-black text-4xl sm:text-5xl uppercase tracking-wider text-white">
+                MEET THE <span class="text-cyberCyan">CREW</span>
+            </h1>
+            <p class="text-slate-400 mt-3 text-base">
+                Operating like a real-world engineering firm divided into specialized sub-teams.
+            </p>
+        </div>
+        <!-- SIDE-BY-SIDE PHOTO & WRITE-UP SECTION -->
+        <section class="glass-card p-6 sm:p-10 rounded-2xl border border-slate-800 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            
+            <!-- TEAM PHOTO WITH NEON CONTAINER -->
+            <div class="relative group">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-300"></div>
+                <div class="relative rounded-2xl overflow-hidden border border-slate-800 bg-slate-900">
+                    <img src="assets/images/team-photo.jpg" 
+                         alt="MoonWalkers Team Photo" 
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x600/0f172a/00f2fe?text=MoonWalkers+Team+Photo';" 
+                         class="w-full h-[350px] sm:h-[420px] object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                </div>
+            </div>
+
+            <!-- WRITE-UP CONTENT -->
+            <div class="space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyberCyan text-xs font-code font-bold">
+                    <i data-lucide="rocket" class="w-4 h-4"></i>
+                    <span>Rookie FTC Season 2026</span>
+                </div>
+
+                <h3 class="font-heading text-2xl sm:text-3xl font-bold text-white leading-tight">
+                    Engineering Excellence Driven by Passion & Innovation
+                </h3>
+
+                <div class="text-slate-300 text-sm leading-relaxed space-y-4 font-body">
+                    <p>
+                        We are <strong>MoonWalkers #38056</strong>, an ambitious FIRST Tech Challenge team. Transitioning from years of competitive FIRST LEGO League (FLL) championships, our team brings deep experience in custom mechanical design, autonomous path planning, and community outreach.
+                    </p>
+                    <p>
+                        What started as a small group of elementary students tinkering with LEGO bricks 5 years ago has evolved into a high-powered FIRST Tech Challenge engineering team. Through hundreds of late-night coding sessions, chassis redesigns, and regional competitions, our bond as lifelong friends has remained our greatest strength.
+                    </p>
+                    <p>
+                        As new members joined our roster, they brought fresh perspectives in 3D CAD modeling, autonomous pathfinding, and community outreach. Today, Team #38056 is dedicated to pushing the boundaries of competitive FTC robotics while mentoring the next generation of STEM enthusiasts.
+                    </p>
+                    <p>
+                        Our mission extends beyond building competitive robots. We strive to cultivate an inclusive environment where students master real-world STEM disciplines—from goBILDA chassis assembly and REV Control Hub Java programming to CAD design and sensor telemetry calibration.
+                    </p>
+                </div>
+
+                <!-- KEY METRICS GRID -->
+                <div class="grid grid-cols-3 gap-4 pt-4 border-t border-slate-800/80 font-code">
+                    <div class="space-y-1">
+                        <div class="text-cyberCyan font-heading font-extrabold text-xl sm:text-2xl">100%</div>
+                        <div class="text-slate-400 text-[11px] uppercase">Custom Code</div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="text-cyberCyan font-heading font-extrabold text-xl sm:text-2xl">4+</div>
+                        <div class="text-slate-400 text-[11px] uppercase">Years STEM</div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="text-cyberCyan font-heading font-extrabold text-xl sm:text-2xl">#38056</div>
+                        <div class="text-slate-400 text-[11px] uppercase">FTC Registered</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Build & CAD Subteam -->
+        <section>
+            <div class="flex items-center gap-3 border-b border-cyan-500/30 pb-3 mb-8">
+                <i data-lucide="wrench" class="text-cyberCyan w-6 h-6"></i>
+                <h2 class="font-heading text-xl font-bold uppercase text-white">Mechanical & CAD Squad</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass-card glass-card-hover p-6 rounded-2xl">
+                    <img src="assets/images/team-member-1.jpg" alt="Build Lead" class="w-full h-48 object-cover rounded-xl mb-4 bg-slate-900 border border-slate-800">
+                    <h3 class="font-heading text-lg font-bold text-white">Alex Rivera</h3>
+                    <p class="text-cyberCyan font-code text-xs uppercase mt-0.5">Lead Hardware Mechanical</p>
+                    <p class="text-slate-400 text-sm mt-3 leading-relaxed">"Upgrading from LEGO beams to CNC milled aluminum extrusions opened endless design possibilities."</p>
+                </div>
+                <div class="glass-card glass-card-hover p-6 rounded-2xl">
+                    <img src="assets/images/team-member-2.jpg" alt="CAD Specialist" class="w-full h-48 object-cover rounded-xl mb-4 bg-slate-900 border border-slate-800">
+                    <h3 class="font-heading text-lg font-bold text-white">Jordan Lee</h3>
+                    <p class="text-cyberCyan font-code text-xs uppercase mt-0.5">3D CAD Modeling</p>
+                    <p class="text-slate-400 text-sm mt-3 leading-relaxed">"Designing our intake in Onshape before assembly saved us dozens of raw material cuts."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Software Subteam -->
+        <section>
+            <div class="flex items-center gap-3 border-b border-cyan-500/30 pb-3 mb-8">
+                <i data-lucide="code-2" class="text-cyberCyan w-6 h-6"></i>
+                <h2 class="font-heading text-xl font-bold uppercase text-white">Software Engineering (Java)</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass-card glass-card-hover p-6 rounded-2xl">
+                    <img src="assets/images/team-member-3.jpg" alt="Software Lead" class="w-full h-48 object-cover rounded-xl mb-4 bg-slate-900 border border-slate-800">
+                    <h3 class="font-heading text-lg font-bold text-white">Sam Chen</h3>
+                    <p class="text-cyberCyan font-code text-xs uppercase mt-0.5">Autonomous Java Engineer</p>
+                    <p class="text-slate-400 text-sm mt-3 leading-relaxed">"RoadRunner trajectory pathing gives us sub-inch accuracy during the 30-second autonomous window."</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-950 border-t border-slate-800 text-slate-400 py-8 text-center text-xs">
+        <p>&copy; 2026 FTC Team #38056 MoonWalkers.</p>
+    </footer>
+    <!-- NAVIGATION & SCRIPTS -->
+    <script src="assets/js/nav.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

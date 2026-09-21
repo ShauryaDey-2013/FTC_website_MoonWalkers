@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTC Team [XXXX] | The Launchpad</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://tailwindcss.com"></script>
+    <!-- Custom Cyberpunk Design System Stylesheet link -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com"></script>
+    <!-- Google Fonts: Orbitron (Headings) & Inter (Body) -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com"></script>
+    
+    <!-- Tailored Theme Configurations -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyberDark: '#12131C',
+                        cyberCyan: '#00FFCC',
+                        cyberMagenta: '#FF007F',
+                    },
+                    fontFamily: {
+                        heading: ['Orbitron', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<!--body class="bg-cyberDark text-white font-body min-h-screen antialiased overflow-x-hidden"-->
+<body class="bg-gray-50 text-gray-900 min-h-screen font-sans flex flex-col justify-between pt-[76px]">
+<!-- NOTE: pt-[76px] adds clearance padding at the top so the sticky header does not block content -->
+
+    <!-- ================= STICKY HEADER ================= -->
+    <header class="bg-teamDark text-white shadow-md fixed top-0 left-0 right-0 z-50 h-[76px] flex items-center">
+        <div class="max-w-6xl w-full mx-auto px-4 flex justify-between items-center">
+            
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div class="bg-teamAccent text-white p-2 rounded-lg font-black text-sm tracking-tighter">FTC</div>
+                <div>
+                    <h1 class="text-lg font-black tracking-tight leading-none group-hover:text-teamAccent transition-colors">Team [XXXX]</h1>
+                    <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">From Bricks to Bolts</span>
+                </div>
+            </a>
+            
+            <!-- Global Main Menu Links -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-semibold tracking-wide">
+                <a href="index.html" class="text-gray-300 hover:text-teamAccent transition-colors">Home</a>
+                <a href="journey.html" class="text-gray-300 hover:text-teamAccent transition-colors">Our FLL Story</a>
+                <a href="team.html" class="text-gray-300 hover:text-teamAccent transition-colors">Meet the Team</a>
+                <a href="blog.html" class="text-teamAccent border-b-2 border-teamAccent pb-1">Engineering Logs</a>
+                <a href="connect.html" class="text-gray-300 hover:text-teamAccent transition-colors">Outreach</a>
+                <a href="sponsors.html" class="bg-teamAccent hover:bg-teamHover text-white px-4 py-2 rounded-lg text-xs font-bold transition-all shadow-sm">Sponsor Us</a>
+            </nav>
+
+            <!-- Adaptive Mobile Menu Toggle Trigger -->
+            <button class="md:hidden text-2xl text-gray-300 hover:text-white" onclick="alert('Link menu pages setup complete! Use this framework block for responsive drawer configuration.')">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 1.1 HERO SECTION -->
+    <header class="relative min-h-[85vh] flex items-center justify-center overflow-hidden border-b border-gray-800/60">
+        <!-- Background Image Grid Overlay -->
+        <div class="absolute inset-0 z-0 opacity-20 pointer-events-none bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+        
+        <!-- Faux Team Image Background with Dark Masking -->
+        <div class="absolute inset-0 z-0">
+            <!-- Replace the src URL below with your actual team photo asset -->
+            <img src="https://unsplash.com" 
+                 alt="FTC Team Photo Backdrop" 
+                 class="w-full h-full object-cover filter saturate-50 contrast-125">
+            <div class="absolute inset-0 bg-gradient-to-t from-cyberDark via-cyberDark/85 to-cyberDark/40"></div>
+        </div>
+
+        <!-- Hero Content Box -->
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+            
+            <!-- Rookie Season Badge -->
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-cyberCyan/40 bg-cyberCyan/10 backdrop-blur-md mb-6 animate-pulse">
+                <span class="w-2 h-2 rounded-full bg-cyberCyan"></span>
+                <span class="text-xs font-semibold tracking-widest uppercase font-heading text-cyberCyan">FTC Rookie Season</span>
+            </div>
+
+            <!-- Catchy Tagline -->
+            <h1 class="font-heading font-black text-4xl sm:text-6xl md:text-7xl tracking-tight leading-tight uppercase mb-6">
+                From <span class="text-cyberMagenta bg-clip-text">LEGO Bricks</span> <br class="sm:hidden"> 
+                to <span class="text-cyberCyan drop-shadow-[0_0_15px_rgba(0,255,204,0.4)]">Metal Gears</span>
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-gray-300 text-base sm:text-xl mb-10 leading-relaxed">
+                Meet <strong class="text-white font-semibold">FTC Team [XXXX]</strong>. We conquered the boards in FIRST LEGO League, and now we are unlocking the next tier of robotics engineering in the FIRST Tech Challenge.
+            </p>
+
+            <!-- Action CTAs -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="journey.html" class="w-full sm:w-auto px-8 py-4 bg-cyberCyan text-black font-heading font-extrabold uppercase rounded shadow-[0_0_20px_rgba(0,255,204,0.3)] hover:shadow-[0_0_30px_rgba(0,255,204,0.6)] transition-all transform hover:-translate-y-0.5 text-center tracking-wide">
+                    Explore Our Journey
+                </a>
+                <a href="sponsors.html" class="w-full sm:w-auto px-8 py-4 border border-white/20 hover:border-cyberMagenta/60 bg-white/5 hover:bg-cyberMagenta/10 backdrop-blur-sm rounded font-heading font-semibold uppercase transition-all text-center tracking-wide group flex items-center justify-center gap-2">
+                    <span>Sponsor The Team</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-cyberMagenta transition-colors"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- UI Bottom Decorator Wave -->
+        <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-cyberDark to-transparent pointer-events-none"></div>
+    </header>
+
+
+    <!-- 1.2 THE BIG TRANSITION COUNTER -->
+    <section class="py-16 max-w-6xl mx-auto px-6">
+        <div class="bg-gray-900/40 border border-gray-800 rounded-2xl p-8 md:p-12 backdrop-blur-xl relative overflow-hidden">
+            <!-- Neon Edge Accent -->
+            <div class="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-cyberMagenta to-transparent shadow-[0_0_10px_#FF007F]"></div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 md:gap-12">
+                
+                <!-- Graphic Title context -->
+                <div class="lg:col-span-4 text-center lg:text-left">
+                    <h2 class="font-heading font-extrabold text-2xl uppercase tracking-wider mb-2">Evolution Timeline</h2>
+                    <p class="text-sm text-gray-400">Tracking our growth and system structural level-up across the official FIRST ecosystems.</p>
+                </div>
+
+                <!-- Interactive Visual Flow Chart Component -->
+                <div class="lg:col-span-8 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-4 relative w-full">
+                    
+                    <!-- FLL Container Card -->
+                    <div class="w-full md:w-5/12 bg-black/40 border border-cyberMagenta/30 rounded-xl p-5 text-center shadow-[0_0_15px_rgba(255,0,127,0.05)] relative group hover:border-cyberMagenta/60 transition-colors">
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 px-3 py-0.5 bg-cyberMagenta text-black font-heading font-bold text-[10px] tracking-widest rounded-full uppercase">
+                            Legacy
+                        </div>
+                        <div class="flex justify-center mb-2 text-cyberMagenta">
+                            <!-- Custom Icon Box or SVG Lego Graphic placeholder -->
+                            <i data-lucide="blocks" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold">FLL Era</h3>
+                        <p class="text-cyberMagenta font-heading text-sm font-semibold mt-1">20XX – 2026</p>
+                        <p class="text-xs text-gray-400 mt-2 line-clamp-2">Mastered autonomous pathing, block logic, and Core Values foundations.</p>
+                    </div>
+
+                    <!-- Flow Transition Indicator Arrow -->
+                    <div class="flex items-center justify-center p-2 z-10">
+                        <div class="bg-gray-800 border border-gray-700 w-12 h-12 rounded-full flex items-center justify-center text-cyberCyan shadow-[0_0_15px_rgba(0,255,204,0.1)] transform rotate-90 md:rotate-0">
+                            <i data-lucide="chevrons-right" class="w-6 h-6 animate-pulse"></i>
+                        </div>
+                    </div>
+
+                    <!-- FTC Container Card -->
+                    <div class="w-full md:w-5/12 bg-black/40 border border-cyberCyan/30 rounded-xl p-5 text-center shadow-[0_0_15px_rgba(0,255,204,0.05)] relative group hover:border-cyberCyan/60 transition-colors">
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 px-3 py-0.5 bg-cyberCyan text-black font-heading font-bold text-[10px] tracking-widest rounded-full uppercase">
+                            Active
+                        </div>
+                        <div class="flex justify-center mb-2 text-cyberCyan">
+                            <i data-lucide="cpu" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold">FTC Rookie</h3>
+                        <p class="text-cyberCyan font-heading text-sm font-semibold mt-1">2026 – 2027</p>
+                        <p class="text-xs text-gray-400 mt-2 line-clamp-2">Levelling up to real-world Java runtime APIs, metal builds, and full structural CAD mapping.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script script initialization to swap placeholder tags with real vectors -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

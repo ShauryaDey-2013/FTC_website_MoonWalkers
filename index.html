@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoonWalkers | FTC Team #38056</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyberCyan: '#00f2fe',
+                        cyberBlue: '#0284c7',
+                        cyberDark: '#080c14',
+                        cyberCard: '#0f172a',
+                    },
+                    fontFamily: {
+                        heading: ['Orbitron', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        code: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-cyberDark text-slate-100 min-h-screen antialiased flex flex-col justify-between pt-[76px] selection:bg-cyberCyan selection:text-black">
+
+    <!-- ================= 1. STICKY HEADER & NAVBAR ================= -->
+    <header class="bg-cyberDark/90 backdrop-blur-md border-b border-cyan-500/20 fixed top-0 left-0 right-0 z-50 h-[76px] flex items-center transition-all duration-300">
+        <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            
+            <!-- Logo & Brand Identifier -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <!-- FIRST / FTC Branding Logo Box -->
+                <div class="relative flex items-center justify-center bg-gradient-to-br from-cyan-500 to-blue-600 p-2 rounded-xl text-black font-black text-xs tracking-tighter shadow-[0_0_15px_rgba(0,242,254,0.4)] group-hover:scale-105 transition-transform">
+                    <span class="font-heading font-black text-white text-base">FIRST</span>
+                </div>
+                
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-2">
+                        <h1 class="font-heading font-extrabold text-lg sm:text-xl tracking-wider text-white group-hover:text-cyberCyan transition-colors">
+                            MOONWALKERS
+                        </h1>
+                        <!--span class="bg-cyan-500/10 border border-cyan-400/30 text-cyberCyan text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider font-code">
+                            #38056
+                        </span-->
+                    </div>
+                    <span class="text-[10px] text-slate-400 font-semibold uppercase tracking-widest font-heading">
+                        FIRST Tech Challenge
+                    </span>
+                </div>
+            </a>
+            
+            <!-- DYNAMIC DESKTOP NAVIGATION CONTAINER -->
+            <nav id="desktop-nav" class="hidden md:flex items-center gap-6 ml-12 text-xs font-heading font-semibold uppercase tracking-widest">
+                <!-- Populated automatically by assets/js/nav.js -->
+            </nav>
+
+            <!-- MOBILE MENU BUTTON -->
+            <button id="mobileMenuBtn" class="md:hidden text-2xl text-slate-300 p-2" aria-label="Toggle Navigation">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- DYNAMIC MOBILE MENU DROPDOWN CONTAINER -->
+        <div id="mobileMenu" class="hidden md:hidden absolute top-[76px] left-0 right-0 bg-cyberDark/95 border-b border-cyan-500/20 p-6 shadow-2xl">
+            <div id="mobile-nav-links" class="flex flex-col gap-4 font-heading text-sm font-semibold">
+                <!-- Populated automatically by assets/js/nav.js -->
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ================= 2. HERO SECTION ================= -->
+    <section class="relative min-h-[88vh] flex items-center justify-center overflow-hidden bg-grid-pattern border-b border-cyan-500/10">
+        <!-- Glow Orbs in Background -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-[300px] h-[300px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+            
+            <!-- FIRST & Rookie Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-400/40 bg-cyan-500/10 backdrop-blur-md mb-8 animate-border-pulse">
+                <span class="w-2.5 h-2.5 rounded-full bg-cyberCyan animate-ping"></span>
+                <span class="text-xs font-heading font-bold tracking-widest uppercase text-cyberCyan">
+                    FIRST Tech Challenge • Rookie Season
+                </span>
+            </div>
+
+            <!-- Main Catchy Title -->
+            <h1 class="font-heading font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-tight uppercase mb-6">
+                FROM LEGO BRICKS <br class="hidden sm:inline">
+                TO <span class="cyan-gradient-text text-glow-cyan">METAL GEARS</span>
+            </h1>
+
+            <p class="max-w-3xl mx-auto text-slate-300 text-base sm:text-xl mb-10 font-normal leading-relaxed">
+                Welcome to <strong class="text-white font-semibold">FTC Team #38056 MoonWalkers</strong>. Graduating from our championship FLL foundations, we are now designing, coding in Java, and engineering full-metal custom chassis for the FIRST Tech Challenge arena.
+            </p>
+
+            <!-- Call To Actions -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+                <a href="journey.html" class="w-full sm:w-auto px-8 py-4 bg-cyberCyan text-slate-950 font-heading font-black text-sm uppercase rounded-xl box-glow-cyan hover:box-glow-cyan-strong hover:scale-105 transition-all text-center tracking-wider flex items-center justify-center gap-2">
+                    <span>Explore Our Journey</span>
+                    <i data-lucide="rocket" class="w-4 h-4"></i>
+                </a>
+                <a href="sponsors.html" class="w-full sm:w-auto px-8 py-4 border border-slate-700 hover:border-cyberCyan/60 bg-slate-900/60 hover:bg-cyan-500/10 backdrop-blur-md rounded-xl font-heading font-bold text-sm uppercase transition-all text-center tracking-wider text-slate-200 hover:text-white flex items-center justify-center gap-2">
+                    <span>Sponsor The Team</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4 text-cyberCyan"></i>
+                </a>
+            </div>
+
+            <!-- Key Metric Quick Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-16 pt-8 border-t border-slate-800">
+                <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800">
+                    <div class="font-heading font-extrabold text-2xl md:text-3xl text-cyberCyan">#38056</div>
+                    <div class="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">Official Team ID</div>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800">
+                    <div class="font-heading font-extrabold text-2xl md:text-3xl text-white">4+ Yrs</div>
+                    <div class="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">FLL Legacy</div>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800">
+                    <div class="font-heading font-extrabold text-2xl md:text-3xl text-cyberCyan">100%</div>
+                    <div class="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">Java & CAD Built</div>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800">
+                    <div class="font-heading font-extrabold text-2xl md:text-3xl text-white">500+</div>
+                    <div class="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">Outreach Hours</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ================= 3. EVOLUTION TIMELINE SECTION ================= -->
+    <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="font-heading font-extrabold text-3xl sm:text-4xl uppercase tracking-wider text-white">
+                THE <span class="text-cyberCyan">EVOLUTION</span> TIMELINE
+            </h2>
+            <p class="text-slate-400 mt-3 text-sm sm:text-base">
+                Tracking our technical and structural growth as we scale from block code to complex autonomous FTC algorithms.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-11 items-center gap-8 relative">
+            
+            <!-- FLL Era Box -->
+            <div class="lg:col-span-5 glass-card glass-card-hover rounded-2xl p-8 relative overflow-hidden border-slate-800">
+                <div class="absolute top-0 right-0 bg-slate-800 text-slate-300 font-heading text-[10px] uppercase tracking-widest px-4 py-1 rounded-bl-xl font-bold">
+                    Foundation Era
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyberCyan mb-5">
+                    <i data-lucide="boxes" class="w-6 h-6"></i>
+                </div>
+                <h3 class="font-heading font-bold text-2xl text-white">FLL Championship Legacy</h3>
+                <p class="text-cyberCyan font-code text-xs mt-1 font-semibold">2021 – 2025</p>
+                <p class="text-slate-300 text-sm mt-4 leading-relaxed">
+                    Built precision LEGO Technic mechanisms, mastered PID loop navigation on sensor arrays, and embraced FIRST Core Values. Won Innovation & Robot Design awards.
+                </p>
+            </div>
+
+            <!-- Transition Arrow Indicator -->
+            <div class="lg:col-span-1 flex justify-center items-center">
+                <div class="w-14 h-14 rounded-full bg-slate-900 border border-cyan-400/40 flex items-center justify-center text-cyberCyan box-glow-cyan rotate-90 lg:rotate-0">
+                    <i data-lucide="chevrons-right" class="w-7 h-7 animate-pulse"></i>
+                </div>
+            </div>
+
+            <!-- FTC Rookie Era Box -->
+            <div class="lg:col-span-5 glass-card glass-card-hover rounded-2xl p-8 relative overflow-hidden border-cyan-500/40">
+                <div class="absolute top-0 right-0 bg-cyberCyan text-slate-950 font-heading text-[10px] uppercase tracking-widest px-4 py-1 rounded-bl-xl font-extrabold">
+                    Active Season
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyberCyan flex items-center justify-center text-cyberCyan mb-5">
+                    <i data-lucide="cpu" class="w-6 h-6"></i>
+                </div>
+                <h3 class="font-heading font-bold text-2xl text-white">FTC Rookie Season</h3>
+                <p class="text-cyberCyan font-code text-xs mt-1 font-semibold">2026 – PRESENT</p>
+                <p class="text-slate-300 text-sm mt-4 leading-relaxed">
+                    Custom aluminum extrusions, Mecanum omni-directional drive trains, REV Robotics hardware, CAD 3D modeling, and custom Java RoadRunner autonomous path planning.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ================= 4. TECH SPECS & INNOVATION SHOWCASE ================= -->
+    <section class="py-20 bg-slate-900/40 border-y border-slate-800 bg-dots-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-cyberCyan font-code text-xs uppercase tracking-widest">Robotic Engineering</span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl uppercase tracking-wider text-white mt-1">
+                        TECH & INNOVATION
+                    </h2>
+                </div>
+                <a href="blog.html" class="text-cyberCyan hover:underline font-heading text-xs uppercase tracking-wider flex items-center gap-1 mt-4 md:mt-0">
+                    View Full Engineering Notebook <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="glass-card glass-card-hover p-6 rounded-2xl">
+                    <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyberCyan mb-4">
+                        <i data-lucide="code-2" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-white">Java & Autonomous Pathing</h3>
+                    <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                        Utilizing FTC SDK, RoadRunner trajectories, and OpenCV computer vision for high-accuracy autonomous cone & pixel placement.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="glass-card glass-card-hover p-6 rounded-2xl">
+                    <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyberCyan mb-4">
+                        <i data-lucide="layers" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-white">Onshape CAD & 3D Printing</h3>
+                    <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                        Every structural bracket, intake roller, and custom sensor mount is modeled in Onshape and printed in PETG/TPU.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="glass-card glass-card-hover p-6 rounded-2xl">
+                    <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyberCyan mb-4">
+                        <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-white">STEM Community Outreach</h3>
+                    <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                        Mentoring young FLL teams, hosting robotics workshops at local libraries, and advocating for accessible STEM education.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================= 5. FOOTER ================= -->
+    <footer class="bg-slate-950 border-t border-slate-800 text-slate-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <!-- Col 1: Brand -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-cyberCyan text-slate-950 font-heading font-black text-xs px-2 py-1 rounded">
+                            FTC #38056
+                        </div>
+                        <span class="font-heading font-extrabold text-xl text-white tracking-wider">
+                            MOONWALKERS
+                        </span>
+                    </div>
+                    <p class="text-sm text-slate-400 max-w-sm leading-relaxed">
+                        Official website of FIRST Tech Challenge Team #38056 MoonWalkers. Innovating and inspiring through competitive robotics.
+                    </p>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div>
+                    <h4 class="font-heading font-bold text-white text-xs uppercase tracking-widest mb-4">Navigation</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="hover:text-cyberCyan transition-colors">Home</a></li>
+                        <li><a href="journey.html" class="hover:text-cyberCyan transition-colors">Our FLL Story</a></li>
+                        <li><a href="team.html" class="hover:text-cyberCyan transition-colors">Meet the Team</a></li>
+                        <li><a href="blog.html" class="hover:text-cyberCyan transition-colors">Engineering Logs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Support & FIRST -->
+                <div>
+                    <h4 class="font-heading font-bold text-white text-xs uppercase tracking-widest mb-4">FIRST Ecosystem</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="sponsors.html" class="hover:text-cyberCyan transition-colors">Sponsor Team #38056</a></li>
+                        <li><a href="connect.html" class="hover:text-cyberCyan transition-colors">Outreach & Contact</a></li>
+                        <li><a href="https://www.firstinspires.org/" target="_blank" rel="noopener" class="hover:text-cyberCyan transition-colors flex items-center gap-1">FIRST Official <i data-lucide="external-link" class="w-3 h-3"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="border-t border-slate-800/80 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+                <p>&copy; 2026 FTC Team #38056 MoonWalkers. All rights reserved.</p>
+                <p class="mt-2 sm:mt-0 font-code">From LEGO Bricks To Metal Gears</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT INITIALIZATION ================= -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Drawer Logic
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
+    <!-- NAVIGATION & SCRIPTS -->
+    <script src="assets/js/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+# ==========================================================================
+# NETLIFY DEPLOYMENT CONFIGURATION: FTC TEAM TRANSITION WEBSITE
+# ==========================================================================
+
+[build]
+  # Specifies the directory to publish (Root folder for basic HTML/CSS sites)
+  publish = "."
+
+[build.processing]
+  # Automatically minimizes HTML, CSS, and JS files on build to keep loads fast for judges
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[[headers]]
+  # Applies global performance and security optimizations across all routes
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  # Ensure your live data engine arrays and raw config assets load with no delays
+  for = "/*.json"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

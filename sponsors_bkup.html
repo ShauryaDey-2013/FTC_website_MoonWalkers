@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sponsors & Support | FTC Team [XXXX]</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://tailwindcss.com"></script>
+    <!-- Custom Cyberpunk Design System Stylesheet link -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyberDark: '#12131C',
+                        cyberCyan: '#00FFCC',
+                        cyberMagenta: '#FF007F',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-cyberDark text-white min-h-screen antialiased selection:bg-cyberCyan selection:text-black">
+
+    <!-- Global Navigation Header Placeholder -->
+    <nav class="border-b border-gray-800/80 bg-cyberDark/60 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="font-heading font-black text-xl tracking-wider text-cyberCyan glow-cyan">// FTC [XXXX]</a>
+        <div class="flex items-center gap-6 font-heading text-xs tracking-widest uppercase text-gray-400">
+            <a href="index.html" class="hover:text-white transition-colors">Home</a>
+            <a href="journey.html" class="hover:text-white transition-colors">Journey</a>
+            <a href="team.html" class="hover:text-white transition-colors">Team</a>
+            <a href="sponsors.html" class="text-cyberCyan">Sponsors</a>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="py-16 text-center max-w-4xl mx-auto px-6">
+        <h1 class="text-4xl md:text-5xl font-heading font-black tracking-tight uppercase mb-4">
+            // SUPPORT & <span class="text-cyberCyan glow-cyan">SPONSORS</span>
+        </h1>
+        <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto">
+            Our vision is made possible through the generous backing of local businesses and technology champions. Help us power our rookie season!
+        </p>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 pb-24 space-y-16">
+        
+        <!-- CALL TO ACTION: SPONSOR PACKET DOWNLOAD BOX -->
+        <section class="cyber-glass border border-cyberCyan/30 rounded-2xl p-8 md:p-12 relative overflow-hidden text-center md:text-left md:flex items-center justify-between gap-8 shadow-[0_0_35px_rgba(0,255,204,0.05)]">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-cyberCyan/5 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="mb-6 md:mb-0 max-w-xl">
+                <div class="inline-block px-2.5 py-1 rounded bg-cyberCyan/10 border border-cyberCyan/30 text-[10px] font-heading font-bold uppercase tracking-widest text-cyberCyan mb-3">Fundraising Goal</div>
+                <h2 class="font-heading text-xl md:text-2xl font-black uppercase text-white mb-2">Partner With Us for the 2026–2027 Season</h2>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    We are raising funds for mechanical raw stock, electronics modular parts, tournament registration fees, and logistics transit. Review our transparent structural budget allocations.
+                </p>
+            </div>
+
+            <!-- Dynamic File Download Trigger Interface -->
+            <div>
+                <!-- Replace 'assets/docs/sponsorship-packet.pdf' with your actual PDF folder file path -->
+                <a href="assets/docs/sponsorship-packet.pdf" download="FTC_Team_XXXX_Sponsorship_Packet.pdf" class="inline-flex items-center justify-center gap-3 w-full md:w-auto px-8 py-4 bg-cyberCyan text-black font-heading font-extrabold text-sm tracking-wider uppercase rounded shadow-[0_0_20px_rgba(0,255,204,0.2)] hover:shadow-[0_0_30px_rgba(0,255,204,0.5)] transition-all transform hover:-translate-y-0.5 group">
+                    <span>Download Packet (PDF)</span>
+                    <i data-lucide="download" class="w-4 h-4 transition-transform group-hover:translate-y-0.5"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- CORPORATE PARTNERS GRID DISPLAY -->
+        <section class="space-y-12">
+            
+            <!-- TIER 1: GOLD CHAMPIONS -->
+            <div class="space-y-4">
+                <h3 class="font-heading text-xs font-black tracking-widest text-amber-400 uppercase flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-400"></span> Gold Tier Partners
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="cyber-glass rounded-xl p-8 border border-amber-500/20 flex items-center justify-center min-h-[140px] hover:border-amber-500/40 transition-colors bg-gradient-to-b from-amber-500/[0.02] to-transparent">
+                        <!-- Replace text with actual Sponsor Image Logos inside production -->
+                        <span class="font-heading font-bold tracking-widest text-gray-500 uppercase text-lg">// SPONSOR_LOGO_GOLD_A</span>
+                    </div>
+                    <div class="cyber-glass rounded-xl p-8 border border-amber-500/20 flex items-center justify-center min-h-[140px] hover:border-amber-500/40 transition-colors bg-gradient-to-b from-amber-500/[0.02] to-transparent">
+                        <span class="font-heading font-bold tracking-widest text-gray-500 uppercase text-lg">// SPONSOR_LOGO_GOLD_B</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIER 2: SILVER DRIVERS -->
+            <div class="space-y-4">
+                <h3 class="font-heading text-xs font-black tracking-widest text-slate-300 uppercase flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-slate-300"></span> Silver Tier Supporters
+                </h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    <div class="cyber-glass rounded-xl p-6 border border-gray-800 flex items-center justify-center min-h-[100px] hover:border-slate-500/30 transition-colors">
+                        <span class="font-heading font-semibold tracking-wider text-gray-600 text-sm">SPONSOR_SILVER_1</span>
+                    </div>
+                    <div class="cyber-glass rounded-xl p-6 border border-gray-800 flex items-center justify-center min-h-[100px] hover:border-slate-500/30 transition-colors">
+                        <span class="font-heading font-semibold tracking-wider text-gray-600 text-sm">SPONSOR_SILVER_2</span>
+                    </div>
+                    <div class="cyber-glass rounded-xl p-6 border border-gray-800 flex items-center justify-center min-h-[100px] hover:border-slate-500/30 transition-colors">
+                        <span class="font-heading font-semibold tracking-wider text-gray-600 text-sm">SPONSOR_SILVER_3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIER 3: BRONZE BRICKS -->
+            <div class="space-y-4">
+                <h3 class="font-heading text-xs font-black tracking-widest text-amber-700 uppercase flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-700"></span> Bronze Contributors
+                </h3>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                    <div class="border border-gray-900 bg-gray-950/40 p-4 rounded-lg text-xs font-mono text-gray-500 tracking-wide">
+                        Local Hardware Supply Co.
+                    </div>
+                    <div class="border border-gray-900 bg-gray-950/40 p-4 rounded-lg text-xs font-mono text-gray-500 tracking-wide">
+                        Community Print Shop
+                    </div>
+                    <div class="border border-gray-900 bg-gray-950/40 p-4 rounded-lg text-xs font-mono text-gray-500 tracking-wide">
+                        The Bakery Group
+                    </div>
+                    <div class="border border-gray-900 bg-gray-950/40 p-4 rounded-lg text-xs font-mono text-gray-500 tracking-wide">
+                        Family Foundation Alpha
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
