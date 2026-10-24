@@ -41,7 +41,9 @@ async function loadBlogPosts(showArchived = false) {
     try {
         // 1. Fetch manifest index
         const manifestRes = await fetch("assets/blogs/blog-list.json");
-        if (!manifestRes.ok) throw new Error("Could not locate assets/blogs/blog-list.json");
+        if (!manifestRes.ok) {
+          throw new Error("Could not locate assets/blogs/blog-list.json");
+        }
 
         const posts = await manifestRes.json();
         const targetPosts = posts.filter(p => Boolean(p.archived) === showArchived);
